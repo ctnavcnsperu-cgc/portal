@@ -253,6 +253,26 @@
             letter-spacing: 2px;
         }
 
+        .pattern-atfm {
+            background: linear-gradient(135deg, #4338ca 0%, #6366f1 100%);
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .pattern-atfm::after {
+            content: 'PERFORMANCE / ATFM';
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
         .card-icon-overlay {
             color: white;
             width: 50px;
@@ -396,6 +416,11 @@
             opacity: 0;
         }
 
+        .container>a:nth-child(4) {
+            animation: fadeInUp 0.8s ease 0.8s forwards;
+            opacity: 0;
+        }
+
         @media (max-width: 900px) {
             .container {
                 grid-template-columns: 1fr;
@@ -485,6 +510,25 @@
                 </div>
                 <div class="card-footer">
                     <span>ACCEDER AL PORTAL</span>
+                    <div class="btn-arrow"><i data-lucide="arrow-right" size="22"></i></div>
+                </div>
+            </a>
+
+            <!-- Project 4: Indicadores ATFM -->
+            <a href="https://app.powerbi.com/view?r=eyJrIjoiZjVlODU5ZTctNmYxNS00MmVjLTllODItY2ZjYWY4NzYxNjQyIiwidCI6ImM0YTY2YzM0LTJiYjctNDUxZi04YmUxLWIyYzI2YTQzMDE1OCIsImMiOjR9"
+                class="project-card" target="_blank" id="link-atfm">
+                <div class="card-image">
+                    <div class="pattern-atfm">
+                        <i data-lucide="bar-chart-3" class="card-icon-overlay" size="50"></i>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <span class="card-tag">Seguridad y Eficiencia</span>
+                    <h3>Indicadores de Performance ATFM</h3>
+                    <p>Métricas para medir el avance en seguridad y eficiencia de la navegación aérea</p>
+                </div>
+                <div class="card-footer">
+                    <span>VER DASHBOARD</span>
                     <div class="btn-arrow"><i data-lucide="arrow-right" size="22"></i></div>
                 </div>
             </a>
