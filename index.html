@@ -145,8 +145,8 @@
             margin: 2rem auto 3rem;
             padding: 0 20px;
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
         }
 
         .project-card {
@@ -264,6 +264,26 @@
 
         .pattern-atfm::after {
             content: 'INDICADORES / GANP';
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .pattern-pnna {
+            background: linear-gradient(135deg, #7c3aed 0%, #db2777 100%);
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .pattern-pnna::after {
+            content: 'GESTIÓN / PNNA';
             position: absolute;
             bottom: 15px;
             right: 20px;
@@ -421,13 +441,24 @@
             opacity: 0;
         }
 
-        @media (max-width: 1100px) {
+        .container>a:nth-child(5) {
+            animation: fadeInUp 0.8s ease 1s forwards;
+            opacity: 0;
+        }
+
+        @media (max-width: 1250px) {
+            .container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
             .container {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        @media (max-width: 700px) {
+        @media (max-width: 600px) {
             .container {
                 grid-template-columns: 1fr;
                 max-width: 500px;
@@ -535,6 +566,24 @@
                 </div>
                 <div class="card-footer">
                     <span>VER DASHBOARD</span>
+                    <div class="btn-arrow"><i data-lucide="arrow-right" size="22"></i></div>
+                </div>
+            </a>
+
+            <!-- Project 5: Panel PNNA -->
+            <a href="https://yedinorog.github.io/d3-pnna-01/" class="project-card" target="_blank" id="link-pnna">
+                <div class="card-image">
+                    <div class="pattern-pnna">
+                        <i data-lucide="layout-dashboard" class="card-icon-overlay" size="50"></i>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <span class="card-tag">Cumplimiento PNNA</span>
+                    <h3>Panel de control PNNA</h3>
+                    <p>Indicadores para dar seguimiento al desempeño y cumplimiento de los objetivos del PNNA.</p>
+                </div>
+                <div class="card-footer">
+                    <span>VER INDICADORES</span>
                     <div class="btn-arrow"><i data-lucide="arrow-right" size="22"></i></div>
                 </div>
             </a>
