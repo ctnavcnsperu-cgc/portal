@@ -141,7 +141,7 @@
 
         /* --- Project Grid --- */
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto 3rem;
             padding: 0 20px;
             display: grid;
@@ -224,6 +224,26 @@
 
         .pattern-vuelos::after {
             content: 'LIM / SPJC';
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .pattern-acdm {
+            background: linear-gradient(135deg, #0d9488 0%, #2dd4bf 100%);
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .pattern-acdm::after {
+            content: 'EUROCONTROL / A-CDM';
             position: absolute;
             bottom: 15px;
             right: 20px;
@@ -371,6 +391,11 @@
             opacity: 0;
         }
 
+        .container>a:nth-child(3) {
+            animation: fadeInUp 0.8s ease 0.6s forwards;
+            opacity: 0;
+        }
+
         @media (max-width: 900px) {
             .container {
                 grid-template-columns: 1fr;
@@ -440,6 +465,25 @@
                 </div>
                 <div class="card-footer">
                     <span>VER ESTADÍSTICAS</span>
+                    <div class="btn-arrow"><i data-lucide="arrow-right" size="22"></i></div>
+                </div>
+            </a>
+
+            <!-- Project 3: Aeropuertos A-CDM -->
+            <a href="https://acdm-peru.com/" class="project-card" target="_blank" id="link-acdm">
+                <div class="card-image">
+                    <div class="pattern-acdm">
+                        <i data-lucide="workflow" class="card-icon-overlay" size="50"></i>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <span class="card-tag">Colaboración Operativa</span>
+                    <h3>Aeropuertos A-CDM</h3>
+                    <p>La A-CDM (airport collaborative decision making A-CDM) es un conjunto de procesos elaborados sobre
+                        la base del concepto general CDM aplicada a las operaciones en los aeropuertos</p>
+                </div>
+                <div class="card-footer">
+                    <span>ACCEDER AL PORTAL</span>
                     <div class="btn-arrow"><i data-lucide="arrow-right" size="22"></i></div>
                 </div>
             </a>
