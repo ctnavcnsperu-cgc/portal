@@ -90,6 +90,25 @@
             font-weight: 600;
         }
 
+        .action-badge {
+            text-decoration: none;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .action-badge:hover {
+            background: rgba(0, 168, 255, 0.4);
+            box-shadow: 0 0 10px rgba(0, 168, 255, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
         .status-dot {
             width: 8px;
             height: 8px;
@@ -116,33 +135,43 @@
             }
         }
 
+        /* --- Main Content --- */
+        main {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding-top: 2rem;
+            padding-bottom: 3rem;
+        }
+
         /* --- Hero Section --- */
         .hero {
             text-align: center;
-            padding: 3rem 1rem 1rem;
+            padding: 0.5rem 1rem 0.5rem;
             animation: fadeInDown 1s ease;
         }
 
         .hero h2 {
             font-size: 2.5rem;
             color: var(--primary-dark);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
             font-weight: 800;
             letter-spacing: -1px;
         }
 
         .hero p {
             color: #555;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             max-width: 700px;
             margin: 0 auto;
-            line-height: 1.6;
+            line-height: 1.5;
         }
 
         /* --- Project Grid --- */
         .container {
             max-width: 1400px;
-            margin: 2rem auto 3rem;
+            margin: 4.5rem auto 3rem;
             padding: 0 20px;
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -377,7 +406,7 @@
         footer {
             margin-top: auto;
             text-align: center;
-            padding: 4rem 1rem;
+            padding: 1.5rem 1rem;
             background: #ffffff;
             border-top: 1px solid #eee;
         }
@@ -394,6 +423,80 @@
             font-size: 0.85rem;
             letter-spacing: 1px;
             text-transform: uppercase;
+        }
+
+        /* --- World Clocks --- */
+        .world-clocks {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding: 0 10px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .clock-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            background: rgba(0, 0, 0, 0.02);
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .clock-item:hover {
+            background: rgba(0, 86, 179, 0.05);
+        }
+
+        .clock-item svg {
+            color: var(--primary-blue);
+        }
+
+        .clock-info {
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+        }
+
+        .clock-label {
+            font-size: 0.65rem;
+            color: #888;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .clock-time {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #444;
+            font-variant-numeric: tabular-nums;
+        }
+
+        @media (max-width: 900px) {
+            .world-clocks {
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .clock-item {
+                flex: 1 1 calc(33% - 10px);
+                justify-content: center;
+                flex-direction: column;
+                padding: 10px 5px;
+            }
+
+            .clock-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 2px;
+            }
         }
 
         /* --- Animations --- */
@@ -478,9 +581,15 @@
             <i data-lucide="shield-check" size="28"></i>
             <h1>CTNAV PERÚ</h1>
         </div>
-        <div class="status-badge">
-            <div class="status-dot"></div>
-            SISTEMA OPERATIVO
+        <div class="header-actions">
+            <a href="https://www.flightradar24.com/-12.03,-77.12/14" target="_blank" class="status-badge action-badge">
+                <i data-lucide="plane" size="16"></i>
+                Flightradar 24
+            </a>
+            <div class="status-badge">
+                <div class="status-dot"></div>
+                SISTEMA OPERATIVO
+            </div>
         </div>
     </header>
 
@@ -501,7 +610,7 @@
                 </div>
                 <div class="card-content">
                     <span class="card-tag">Vigilancia Meteorológica</span>
-                    <h3>Meteorología Operativa</h3>
+                    <h3>Meteorología operativa</h3>
                     <p>Mapas interactivos de fenómenos climáticos, visualización de METAR/TAF y herramientas de
                         vigilancia técnica en tiempo real.</p>
                 </div>
@@ -521,7 +630,7 @@
                 </div>
                 <div class="card-content">
                     <span class="card-tag">Monitoreo AIJCH</span>
-                    <h3>Dashboard de Vuelos</h3>
+                    <h3>Dashboard de vuelos</h3>
                     <p>Analítica y reporte de vuelos cancelados y estado operativo del Aeropuerto Internacional Jorge
                         Chávez.</p>
                 </div>
@@ -541,9 +650,8 @@
                 <div class="card-content">
                     <span class="card-tag">Colaboración Operativa</span>
                     <h3>Aeropuertos A-CDM</h3>
-                    <p>La A-CDM (airport collaborative decision making A-CDM) es un conjunto de procesos elaborados
-                        sobre
-                        la base del concepto general CDM aplicada a las operaciones en los aeropuertos</p>
+                    <p>Procesos elaborados sobre la base del concepto general CDM aplicada a las operaciones en los
+                        aeropuertos.</p>
                 </div>
                 <div class="card-footer">
                     <span>ACCEDER AL PORTAL</span>
@@ -561,8 +669,8 @@
                 </div>
                 <div class="card-content">
                     <span class="card-tag">Seguridad y Eficiencia</span>
-                    <h3>Indicadores de Performance ATFM</h3>
-                    <p>Métricas para medir el avance en seguridad y eficiencia de la navegación aérea</p>
+                    <h3>Indicadores ATFM</h3>
+                    <p>Métricas para evaluar el avance en seguridad y eficiencia de la navegación aérea.</p>
                 </div>
                 <div class="card-footer">
                     <span>VER DASHBOARD</span>
@@ -580,8 +688,7 @@
                 <div class="card-content">
                     <span class="card-tag">Cumplimiento PNNA</span>
                     <h3>Panel de control PNNA</h3>
-                    <p>Indicadores para dar seguimiento al desempeño y cumplimiento de los objetivos del Plan Nacional
-                        de Navegación Aérea (PNNA).</p>
+                    <p>Indicadores para monitorear el desempeño y cumplimiento del PNNA.</p>
                 </div>
                 <div class="card-footer">
                     <span>VER INDICADORES</span>
@@ -592,6 +699,45 @@
     </main>
 
     <footer>
+        <!-- Bloque de Relojes Mundiales -->
+        <div class="world-clocks">
+            <div class="clock-item">
+                <i data-lucide="globe" size="14"></i>
+                <div class="clock-info">
+                    <span class="clock-label">UTC / ZULU</span>
+                    <span class="clock-time" id="clock-utc">00:00:00</span>
+                </div>
+            </div>
+            <div class="clock-item">
+                <i data-lucide="sun" size="14"></i>
+                <div class="clock-info">
+                    <span class="clock-label">Lima</span>
+                    <span class="clock-time" id="clock-lima">00:00:00</span>
+                </div>
+            </div>
+            <div class="clock-item">
+                <i data-lucide="map-pin" size="14"></i>
+                <div class="clock-info">
+                    <span class="clock-label">New York</span>
+                    <span class="clock-time" id="clock-ny">00:00:00</span>
+                </div>
+            </div>
+            <div class="clock-item">
+                <i data-lucide="map-pin" size="14"></i>
+                <div class="clock-info">
+                    <span class="clock-label">Madrid</span>
+                    <span class="clock-time" id="clock-madrid">00:00:00</span>
+                </div>
+            </div>
+            <div class="clock-item">
+                <i data-lucide="map-pin" size="14"></i>
+                <div class="clock-info">
+                    <span class="clock-label">Tokio</span>
+                    <span class="clock-time" id="clock-tokyo">00:00:00</span>
+                </div>
+            </div>
+        </div>
+
         <p>&copy; <span id="current-year"></span> Centro de Navegación Aérea</p>
         <div class="footer-sub">Optimizado para Gestión de Tráfico Aéreo</div>
     </footer>
@@ -602,6 +748,21 @@
 
         // Auto update year
         document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // World Clocks Update
+        function updateClocks() {
+            const now = new Date();
+            const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+
+            document.getElementById('clock-utc').textContent = new Intl.DateTimeFormat('es-PE', { ...options, timeZone: 'UTC' }).format(now);
+            document.getElementById('clock-lima').textContent = new Intl.DateTimeFormat('es-PE', { ...options, timeZone: 'America/Lima' }).format(now);
+            document.getElementById('clock-ny').textContent = new Intl.DateTimeFormat('es-PE', { ...options, timeZone: 'America/New_York' }).format(now);
+            document.getElementById('clock-madrid').textContent = new Intl.DateTimeFormat('es-PE', { ...options, timeZone: 'Europe/Madrid' }).format(now);
+            document.getElementById('clock-tokyo').textContent = new Intl.DateTimeFormat('es-PE', { ...options, timeZone: 'Asia/Tokyo' }).format(now);
+        }
+
+        updateClocks();
+        setInterval(updateClocks, 1000);
     </script>
 </body>
 
