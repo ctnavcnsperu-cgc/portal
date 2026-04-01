@@ -81,13 +81,15 @@
         .status-badge {
             background: rgba(0, 168, 255, 0.2);
             border: 1px solid var(--accent-blue);
-            padding: 5px 15px;
+            padding: 0 15px;
+            height: 32px;
             border-radius: 50px;
             font-size: 0.8rem;
             display: flex;
             align-items: center;
             gap: 8px;
             font-weight: 600;
+            box-sizing: border-box;
         }
 
         .action-badge {
@@ -174,7 +176,7 @@
             margin: 4.5rem auto 3rem;
             padding: 0 20px;
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(6, 1fr);
             gap: 15px;
         }
 
@@ -313,6 +315,26 @@
 
         .pattern-pnna::after {
             content: 'GESTIÓN / PNNA';
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .pattern-ats {
+            background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .pattern-ats::after {
+            content: 'REPORTES / ATS';
             position: absolute;
             bottom: 15px;
             right: 20px;
@@ -549,6 +571,11 @@
             opacity: 0;
         }
 
+        .container>a:nth-child(6) {
+            animation: fadeInUp 0.8s ease 1.2s forwards;
+            opacity: 0;
+        }
+
         @media (max-width: 1250px) {
             .container {
                 grid-template-columns: repeat(3, 1fr);
@@ -585,6 +612,10 @@
             <a href="https://www.flightradar24.com/-12.03,-77.12/14" target="_blank" class="status-badge action-badge">
                 <i data-lucide="plane" size="16"></i>
                 Flightradar 24
+            </a>
+            <a href="regulaciones.html" class="status-badge action-badge">
+                <i data-lucide="file-text" size="16"></i>
+                Regulaciones RAP
             </a>
             <div class="status-badge">
                 <div class="status-dot"></div>
@@ -692,6 +723,24 @@
                 </div>
                 <div class="card-footer">
                     <span>VER INDICADORES</span>
+                    <div class="btn-arrow"><i data-lucide="arrow-right" size="22"></i></div>
+                </div>
+            </a>
+            
+            <!-- Project 6: Sucesos ATS -->
+            <a href="https://lookerstudio.google.com/reporting/c1b29a09-ee42-4608-9610-d0877029ec5a/page/HJ3oF" class="project-card" target="_blank" id="link-sucesos">
+                <div class="card-image">
+                    <div class="pattern-ats">
+                        <i data-lucide="alert-circle" class="card-icon-overlay" size="50"></i>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <span class="card-tag">Seguridad Operacional</span>
+                    <h3>Sucesos con afectación al ATS</h3>
+                    <p>Eventos o incidentes que impactan la prestación de los Servicios de Tránsito Aéreo (ATS).</p>
+                </div>
+                <div class="card-footer">
+                    <span>VER REPORTE</span>
                     <div class="btn-arrow"><i data-lucide="arrow-right" size="22"></i></div>
                 </div>
             </a>

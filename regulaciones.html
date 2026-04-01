@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regulaciones | Centro de Navegación Aérea</title>
+    <meta name="description" content="Biblioteca de Regulaciones Aeronáuticas del Perú (RAP) para la gestión del tráfico aéreo.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons (CDN) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --primary-dark: #003a70;
+            --primary-blue: #0056b3;
+            --accent-blue: #00a8ff;
+            --bg-light: #f4f7f9;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.9);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-light);
+            background-image:
+                radial-gradient(at 0% 0%, rgba(0, 75, 141, 0.05) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(0, 168, 255, 0.05) 0px, transparent 50%);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: linear-gradient(90deg, var(--primary-dark) 0%, var(--primary-blue) 100%);
+            padding: 1.2rem 5%;
+            color: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid var(--accent-blue);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-logo i {
+            color: var(--accent-blue);
+        }
+
+        .header-logo h1 {
+            font-size: 1.3rem;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .status-badge {
+            background: rgba(0, 168, 255, 0.2);
+            border: 1px solid var(--accent-blue);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .status-badge:hover {
+            background: rgba(0, 168, 255, 0.4);
+            transform: translateY(-1px);
+            box-shadow: 0 5px 15px rgba(0, 168, 255, 0.3);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #00ff88;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #00ff88;
+            animation: pulse 2s infinite;
+        }
+
+        .pulse-icon {
+            color: #00ff88 !important;
+            filter: drop-shadow(0 0 5px #00ff88);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.3); opacity: 0.6; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        main {
+            flex-grow: 1;
+            padding: 3.5rem 5% 3.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 5rem;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .page-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-title p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .grid-regulations {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+            opacity: 0;
+        }
+
+        .card-rap {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 1rem 1.2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .card-rap:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 20px 40px rgba(0, 75, 141, 0.08);
+        }
+
+        .card-rap-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 0.6rem;
+        }
+
+        .rap-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 86, 179, 0.08);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-blue);
+            flex-shrink: 0;
+        }
+
+        .rap-info h3 {
+            font-size: 1.15rem;
+            color: var(--primary-dark);
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+        }
+
+        .rap-info .rap-number {
+            font-size: 0.8rem;
+            background: var(--primary-blue);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 0.4rem;
+        }
+
+        /* Color Chips Styles */
+        .chip-303 { background-color: #3b82f6 !important; }
+        .chip-304 { background-color: #10b981 !important; }
+        .chip-310 { background-color: #f59e0b !important; }
+        .chip-311 { background-color: #6366f1 !important; }
+        .chip-312 { background-color: #ef4444 !important; }
+        .chip-315 { background-color: #06b6d4 !important; }
+
+        /* Icon Background Styles */
+        .icon-303 { background: rgba(59, 130, 246, 0.1) !important; color: #3b82f6 !important; }
+        .icon-304 { background: rgba(16, 185, 129, 0.1) !important; color: #10b981 !important; }
+        .icon-310 { background: rgba(245, 158, 11, 0.1) !important; color: #f59e0b !important; }
+        .icon-311 { background: rgba(99, 102, 241, 0.1) !important; color: #6366f1 !important; }
+        .icon-312 { background: rgba(239, 68, 68, 0.1) !important; color: #ef4444 !important; }
+        .icon-315 { background: rgba(6, 182, 212, 0.1) !important; color: #06b6d4 !important; }
+
+        .card-rap p {
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.5;
+            flex-grow: 1;
+            margin-bottom: 0.8rem;
+        }
+
+        .card-rap-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 0.8rem;
+            border-top: 1px solid #f0f0f0;
+            color: var(--primary-blue);
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .btn-view {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Especial para RAP 310 con volúmenes */
+        .card-rap.has-volumes {
+            cursor: default;
+        }
+        .card-rap.has-volumes:hover {
+            transform: none;
+            border-color: rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow);
+        }
+
+        .volume-links {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: 0.8rem;
+        }
+
+        .volume-btn {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-decoration: none;
+            color: var(--primary-dark);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .volume-btn:hover {
+            background: var(--primary-blue);
+            color: white;
+            border-color: var(--primary-blue);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-top: 1px solid #eee;
+        }
+
+        .footer-sub {
+            color: #999;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            .grid-regulations {
+                grid-template-columns: 1fr;
+            }
+            .page-title h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-logo">
+            <i data-lucide="shield-check" size="28"></i>
+            <h1>CTNAV PERÚ</h1>
+        </div>
+        <div class="header-actions">
+            <a href="index.html" class="status-badge">
+                <i data-lucide="arrow-left" size="16" class="pulse-icon"></i>
+                REGRESAR
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-title">
+            <h2>Regulaciones Aeronáuticas</h2>
+            <p>Acceso directo a la normativa RAP vigente para la seguridad operacional.</p>
+        </section>
+
+        <div class="grid-regulations">
+            <!-- RAP 303 -->
+            <a href="https://cdn.www.gob.pe/uploads/document/file/390265/321317-rap-303_ne_enm4_fn.pdf?v=1770755192" 
+               target="_blank" class="card-rap">
+                <div class="card-rap-header">
+                    <div class="rap-icon icon-303"><i data-lucide="cloud-sun" size="24"></i></div>
+                    <div class="rap-info">
+                        <span class="rap-number chip-303">RAP 303</span>
+                        <h3>Meteorología</h3>
+                    </div>
+                </div>
+                <p>Servicio Meteorológico para la Navegación Aérea.</p>
+                <div class="card-rap-footer">
+                    <span class="btn-view">ABRIR PDF <i data-lucide="external-link" size="14"></i></span>
+                </div>
+            </a>
+
+            <!-- RAP 304 -->
+            <a href="https://cdn.www.gob.pe/uploads/document/file/377186/308551-rap-304-nueva-edicion-enmienda-4-vigente.pdf?v=1771429397" 
+               target="_blank" class="card-rap">
+                <div class="card-rap-header">
+                    <div class="rap-icon icon-304"><i data-lucide="map" size="24"></i></div>
+                    <div class="rap-info">
+                        <span class="rap-number chip-304">RAP 304</span>
+                        <h3>Cartas Aeronáuticas</h3>
+                    </div>
+                </div>
+                <p>Establece los requisitos para la elaboración y publicación de cartas de navegación.</p>
+                <div class="card-rap-footer">
+                    <span class="btn-view">ABRIR PDF <i data-lucide="external-link" size="14"></i></span>
+                </div>
+            </a>
+
+            <!-- RAP 310 (Con volúmenes) -->
+            <div class="card-rap has-volumes">
+                <div class="card-rap-header">
+                    <div class="rap-icon icon-310"><i data-lucide="radio-tower" size="24"></i></div>
+                    <div class="rap-info">
+                        <span class="rap-number chip-310">RAP 310</span>
+                        <h3>Telecomunicaciones</h3>
+                    </div>
+                </div>
+                <p>Servicios de Telecomunicaciones Aeronáuticas.</p>
+                <div class="volume-links">
+                    <a href="https://cdn.www.gob.pe/uploads/document/file/390275/321323-rap-310-volumen-i-sistemas-de-comunicaciones-navegacion-y-vigilancia-aeronautica-cns-vigente.pdf?v=1771277831" 
+                       target="_blank" class="volume-btn">
+                        Volumen I <i data-lucide="external-link" size="12"></i>
+                    </a>
+                    <a href="https://cdn.www.gob.pe/uploads/document/file/390276/321323-rap-310-volumen-ii-procedimientos-de-comunicaciones-vigente.pdf?v=1771277831" 
+                       target="_blank" class="volume-btn">
+                        Volumen II <i data-lucide="external-link" size="12"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- RAP 311 -->
+            <a href="https://cdn.www.gob.pe/uploads/document/file/9466075/321326-rap-311-tercera-edicion-enmienda-1-vigente.pdf?v=1771428802" 
+               target="_blank" class="card-rap">
+                <div class="card-rap-header">
+                    <div class="rap-icon icon-311"><i data-lucide="navigation-2" size="24"></i></div>
+                    <div class="rap-info">
+                        <span class="rap-number chip-311">RAP 311</span>
+                        <h3>Tránsito Aéreo</h3>
+                    </div>
+                </div>
+                <p>Servicios de Tránsito Aéreo (ATS).</p>
+                <div class="card-rap-footer">
+                    <span class="btn-view">ABRIR PDF <i data-lucide="external-link" size="14"></i></span>
+                </div>
+            </a>
+
+            <!-- RAP 312 -->
+            <a href="https://cdn.www.gob.pe/uploads/document/file/390290/321327-rap-312-nueva-edicion-enmienda-1-vigente.pdf?v=1770755601" 
+               target="_blank" class="card-rap">
+                <div class="card-rap-header">
+                    <div class="rap-icon icon-312"><i data-lucide="life-buoy" size="24"></i></div>
+                    <div class="rap-info">
+                        <span class="rap-number chip-312">RAP 312</span>
+                        <h3>Búsqueda y Salvamento</h3>
+                    </div>
+                </div>
+                <p>Procedimientos y organización para misiones SAR.</p>
+                <div class="card-rap-footer">
+                    <span class="btn-view">ABRIR PDF <i data-lucide="external-link" size="14"></i></span>
+                </div>
+            </a>
+
+            <!-- RAP 315 -->
+            <a href="https://cdn.www.gob.pe/uploads/document/file/8614109/321331-rap_315_ne_enm3.pdf?v=1757346298" 
+               target="_blank" class="card-rap">
+                <div class="card-rap-header">
+                    <div class="rap-icon icon-315"><i data-lucide="info" size="24"></i></div>
+                    <div class="rap-info">
+                        <span class="rap-number chip-315">RAP 315</span>
+                        <h3>Información Aeronáutica</h3>
+                    </div>
+                </div>
+                <p>Servicio de Información Aeronáutica (AIS).</p>
+                <div class="card-rap-footer">
+                    <span class="btn-view">ABRIR PDF <i data-lucide="external-link" size="14"></i></span>
+                </div>
+            </a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="current-year"></span> Centro de Navegación Aérea</p>
+        <div class="footer-sub">Optimizado para cumplimiento normativo DGAC</div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Auto update year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>
