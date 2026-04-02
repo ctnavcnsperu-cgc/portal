@@ -598,6 +598,161 @@
                 font-size: 2.2rem;
             }
         }
+
+        /* --- Modal Authentication --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 28px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            text-align: center;
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            margin-bottom: 0.5rem;
+            color: var(--primary-dark);
+        }
+
+        .modal-header i {
+            background: rgba(0, 86, 179, 0.1);
+            color: var(--primary-blue);
+            padding: 15px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .modal-header h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 0.5rem;
+        }
+
+        .modal-header p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-top: 5px;
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 6px;
+            margin-left: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 20px;
+            border-radius: 14px;
+            border: 2px solid #eee;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: var(--accent-blue);
+            background: #f8fbff;
+            box-shadow: 0 0 0 4px rgba(0, 168, 255, 0.1);
+        }
+
+        .error-text {
+            color: #ef4444;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            height: 20px;
+            display: none;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 1rem;
+        }
+
+        .btn-modal {
+            flex: 1;
+            padding: 14px;
+            border-radius: 14px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .btn-cancel {
+            background: #f1f5f9;
+            color: #64748b;
+        }
+
+        .btn-cancel:hover {
+            background: #e2e8f0;
+        }
+
+        .btn-login {
+            background: var(--primary-blue);
+            color: white;
+            box-shadow: 0 4px 12px rgba(0, 86, 179, 0.2);
+        }
+
+        .btn-login:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 86, 179, 0.3);
+        }
+
+        /* Shake animation */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+            20%, 40%, 60%, 80% { transform: translateX(10px); }
+        }
+
+        .shake {
+            animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+        }
     </style>
 </head>
 
@@ -728,7 +883,7 @@
             </a>
             
             <!-- Project 6: Sucesos ATS -->
-            <a href="https://lookerstudio.google.com/reporting/c1b29a09-ee42-4608-9610-d0877029ec5a/page/HJ3oF" class="project-card" target="_blank" id="link-sucesos">
+            <div class="project-card" onclick="openLoginModal()" id="link-sucesos" style="cursor: pointer;">
                 <div class="card-image">
                     <div class="pattern-ats">
                         <i data-lucide="alert-circle" class="card-icon-overlay" size="50"></i>
@@ -740,10 +895,10 @@
                     <p>Eventos o incidentes que impactan la prestación de los Servicios de Tránsito Aéreo (ATS).</p>
                 </div>
                 <div class="card-footer">
-                    <span>VER REPORTE</span>
-                    <div class="btn-arrow"><i data-lucide="arrow-right" size="22"></i></div>
+                    <span>ACCESO RESTRINGIDO</span>
+                    <div class="btn-arrow"><i data-lucide="lock" size="18"></i></div>
                 </div>
-            </a>
+            </div>
         </div>
     </main>
 
@@ -791,6 +946,34 @@
         <div class="footer-sub">Optimizado para Gestión de Tráfico Aéreo</div>
     </footer>
 
+    <!-- Login Modal para Sucesos ATS -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i data-lucide="shield-alert" size="32"></i>
+                <h2>Acceso Restringido</h2>
+                <p>Ingrese sus credenciales para visualizar el reporte de Seguridad Operacional.</p>
+            </div>
+            
+            <div class="form-group">
+                <label for="username">Usuario</label>
+                <input type="text" id="username" placeholder="Nombre de usuario" autocomplete="off">
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" placeholder="••••••••" autocomplete="current-password">
+            </div>
+            
+            <div id="error-message" class="error-text">Usuario o contraseña incorrectos</div>
+            
+            <div class="modal-actions">
+                <button class="btn-modal btn-cancel" onclick="closeLoginModal()">CANCELAR</button>
+                <button class="btn-modal btn-login" onclick="validateLogin()">INGRESAR</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Initialize Lucide icons
         lucide.createIcons();
@@ -812,6 +995,53 @@
 
         updateClocks();
         setInterval(updateClocks, 1000);
+
+        // Login Logic for ATS Sucesos
+        const modal = document.getElementById('loginModal');
+        const errorMessage = document.getElementById('error-message');
+        const userInput = document.getElementById('username');
+        const passInput = document.getElementById('password');
+
+        function openLoginModal() {
+            modal.classList.add('active');
+            userInput.value = '';
+            passInput.value = '';
+            errorMessage.style.display = 'none';
+            setTimeout(() => userInput.focus(), 100);
+        }
+
+        function closeLoginModal() {
+            modal.classList.remove('active');
+        }
+
+        function validateLogin() {
+            const user = userInput.value;
+            const pass = passInput.value;
+
+            if (user === 'smsdgac' && pass === 'seguridadoperacional') {
+                window.open('https://lookerstudio.google.com/reporting/c1b29a09-ee42-4608-9610-d0877029ec5a/page/HJ3oF', '_blank');
+                closeLoginModal();
+            } else {
+                errorMessage.style.display = 'block';
+                // Add shake animation
+                modal.querySelector('.modal-content').classList.add('shake');
+                setTimeout(() => {
+                    modal.querySelector('.modal-content').classList.remove('shake');
+                }, 500);
+            }
+        }
+
+        // Allow Enter key to submit
+        [userInput, passInput].forEach(input => {
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') validateLogin();
+            });
+        });
+
+        // Close on click outside
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) closeLoginModal();
+        });
     </script>
 </body>
 
