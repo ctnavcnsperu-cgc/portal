@@ -488,14 +488,14 @@
         </section>
 
         <div class="dashboard-container">
-            <!-- Project 1: Radioayudas -->
-            <a href="https://ctnavcnsperu-cgc.github.io/radioayudas/" class="modern-card grid-top" target="_blank">
+            <!-- Project 1: Frecuencias -->
+            <div class="modern-card grid-top" onclick="openLoginCns()" style="cursor: pointer;">
                 <div class="card-icon-box"><i data-lucide="radio" size="24"></i></div>
-                <span class="card-meta">Infraestructura CNS</span>
-                <h3>Radioayudas</h3>
-                <p>Gestión y monitoreo de infraestructura orientada a facilitar la navegación aérea estratégica.</p>
-                <div class="card-arrow">ACCEDER AL PANEL <i data-lucide="arrow-right" size="14"></i></div>
-            </a>
+                <span class="card-meta">CNS</span>
+                <h3>Frecuencias</h3>
+                <p>Gestión y monitoreo de frecuencias orientadas a facilitar la navegación aérea estratégica.</p>
+                <div class="card-arrow">ACCESO SEGURO <i data-lucide="lock" size="14"></i></div>
+            </div>
 
             <!-- Project 2: Dashboard de vuelos -->
             <a href="https://ctnavcnsperu-cgc.github.io/lima-airport-dashboard/" class="modern-card grid-top" target="_blank">
@@ -558,7 +558,7 @@
         <p class="footer-copy">&copy; <span id="year"></span> Centro de Navegación Aérea. Panel de Gestión Técnica Aeronáutica.</p>
     </footer>
 
-    <!-- Login Modal -->
+    <!-- Login Modal ATS -->
     <div id="loginModal" class="modal">
         <div class="modal-body">
             <i data-lucide="lock" size="32" style="color:var(--primary); margin-bottom:1rem"></i>
@@ -572,6 +572,23 @@
             
             <button class="btn-modern btn-primary" onclick="validate()">Ingresar al Sistema</button>
             <button class="btn-modern" style="color:var(--text-muted); margin-top:1rem" onclick="hideLogin()">Cancelar</button>
+        </div>
+    </div>
+
+    <!-- Login Modal CNS -->
+    <div id="loginModalCns" class="modal">
+        <div class="modal-body">
+            <i data-lucide="lock" size="32" style="color:var(--primary); margin-bottom:1rem"></i>
+            <h2 style="margin-bottom:0.5rem">Acceso de Seguridad</h2>
+            <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:2rem">Autenticación requerida para Frecuencias CNS</p>
+            
+            <input type="text" id="userCns" placeholder="Nombre de Usuario">
+            <input type="password" id="passCns" placeholder="Contraseña">
+            
+            <div id="errorCns" class="error-msg">Credenciales inválidas</div>
+            
+            <button class="btn-modern btn-primary" onclick="validateCns()">Ingresar al Sistema</button>
+            <button class="btn-modern" style="color:var(--text-muted); margin-top:1rem" onclick="hideLoginCns()">Cancelar</button>
         </div>
     </div>
 
@@ -598,7 +615,7 @@
         setInterval(updateAllClocks, 1000);
         updateAllClocks();
 
-        // Login
+        // Login ATS
         const modal = document.getElementById('loginModal');
         function openLogin() { modal.classList.add('active'); }
         function hideLogin() { modal.classList.remove('active'); }
@@ -613,6 +630,24 @@
                 document.getElementById('error').style.display = 'block';
                 modal.querySelector('.modal-body').style.animation = 'shake 0.4s ease';
                 setTimeout(() => modal.querySelector('.modal-body').style.animation = '', 400);
+            }
+        }
+
+        // Login CNS
+        const modalCns = document.getElementById('loginModalCns');
+        function openLoginCns() { modalCns.classList.add('active'); }
+        function hideLoginCns() { modalCns.classList.remove('active'); }
+
+        function validateCns() {
+            const u = document.getElementById('userCns').value;
+            const p = document.getElementById('passCns').value;
+            if (u === 'CNS' && p === 'CTNAV_2026') {
+                window.open('https://ctnavcnsperu-cgc.github.io/radioayudas/', '_blank');
+                hideLoginCns();
+            } else {
+                document.getElementById('errorCns').style.display = 'block';
+                modalCns.querySelector('.modal-body').style.animation = 'shake 0.4s ease';
+                setTimeout(() => modalCns.querySelector('.modal-body').style.animation = '', 400);
             }
         }
     </script>
