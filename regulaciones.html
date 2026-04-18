@@ -5,12 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Regulaciones | Centro de Navegación Aérea</title>
-    <meta name="description" content="Biblioteca de Regulaciones Aeronáuticas del Perú (RAP) para la gestión del tráfico aéreo.">
+    <meta name="description"
+        content="Biblioteca de Regulaciones Aeronáuticas del Perú (RAP) para la gestión del tráfico aéreo.">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -22,7 +24,7 @@
             --bg-surface: #1e293b;
             --primary: #38bdf8;
             --primary-glow: rgba(56, 189, 248, 0.1);
-            --secondary: #818cf8; 
+            --secondary: #818cf8;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --glass: rgba(30, 41, 59, 0.6);
@@ -44,7 +46,7 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            background-image: 
+            background-image:
                 radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.03) 0%, transparent 45%),
                 radial-gradient(circle at 100% 100%, rgba(129, 140, 248, 0.03) 0%, transparent 45%);
         }
@@ -182,6 +184,7 @@
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
             opacity: 0;
             transition: opacity 0.4s ease;
+            pointer-events: none;
         }
 
         .card-modern-rap:hover {
@@ -191,7 +194,9 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
 
-        .card-modern-rap:hover::before { opacity: 1; }
+        .card-modern-rap:hover::before {
+            opacity: 1;
+        }
 
         .card-rap-header {
             display: flex;
@@ -286,6 +291,8 @@
             justify-content: center;
             gap: 6px;
             transition: var(--transition);
+            position: relative;
+            z-index: 2;
         }
 
         .volume-item:hover {
@@ -299,7 +306,7 @@
             padding: 4rem 5%;
             text-align: center;
             border-top: 1px solid var(--glass-border);
-            background: rgba(0,0,0,0.2);
+            background: rgba(0, 0, 0, 0.2);
         }
 
         .footer-logo {
@@ -319,25 +326,54 @@
 
         /* Animations */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .grid-regulations > * {
+        .grid-regulations>* {
             opacity: 0;
             animation: fadeIn 0.8s ease forwards;
         }
 
-        .grid-regulations > *:nth-child(1) { animation-delay: 0.1s; }
-        .grid-regulations > *:nth-child(2) { animation-delay: 0.2s; }
-        .grid-regulations > *:nth-child(3) { animation-delay: 0.3s; }
-        .grid-regulations > *:nth-child(4) { animation-delay: 0.4s; }
-        .grid-regulations > *:nth-child(5) { animation-delay: 0.5s; }
-        .grid-regulations > *:nth-child(6) { animation-delay: 0.6s; }
+        .grid-regulations>*:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .grid-regulations>*:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .grid-regulations>*:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .grid-regulations>*:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .grid-regulations>*:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .grid-regulations>*:nth-child(6) {
+            animation-delay: 0.6s;
+        }
 
         @media (max-width: 768px) {
-            .page-header h2 { font-size: 2.2rem; }
-            .grid-regulations { grid-template-columns: 1fr; }
+            .page-header h2 {
+                font-size: 2.2rem;
+            }
+
+            .grid-regulations {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -365,28 +401,30 @@
 
         <div class="grid-regulations">
             <!-- RAP 303 -->
-            <a href="https://cdn.www.gob.pe/uploads/document/file/390265/321317-rap-303_ne_enm4_fn.pdf?v=1770755192" 
-               target="_blank" class="card-modern-rap">
+            <a href="https://cdn.www.gob.pe/uploads/document/file/390265/321317-rap-303_ne_enm4_fn.pdf?v=1770755192"
+                target="_blank" class="card-modern-rap">
                 <div class="card-rap-header">
                     <div class="rap-icon-box"><i data-lucide="cloud-sun" size="24"></i></div>
                     <span class="rap-badge">RAP 303</span>
                 </div>
                 <h3>Meteorología</h3>
-                <p>Servicio Meteorológico para la Navegación Aérea. Normas y procedimientos para el suministro de información climática segura.</p>
+                <p>Servicio Meteorológico para la Navegación Aérea. Normas y procedimientos para el suministro de
+                    información climática segura.</p>
                 <div class="card-footer-action">
                     ABRIR DOCUMENTO PDF <i data-lucide="external-link" size="14"></i>
                 </div>
             </a>
 
             <!-- RAP 304 -->
-            <a href="https://cdn.www.gob.pe/uploads/document/file/377186/308551-rap-304-nueva-edicion-enmienda-4-vigente.pdf?v=1771429397" 
-               target="_blank" class="card-modern-rap">
+            <a href="https://cdn.www.gob.pe/uploads/document/file/377186/308551-rap-304-nueva-edicion-enmienda-4-vigente.pdf?v=1771429397"
+                target="_blank" class="card-modern-rap">
                 <div class="card-rap-header">
                     <div class="rap-icon-box"><i data-lucide="map" size="24"></i></div>
                     <span class="rap-badge">RAP 304</span>
                 </div>
                 <h3>Cartas Aeronáuticas</h3>
-                <p>Requisitos para la elaboración, actualización y publicación de cartas de navegación aérea nacionales.</p>
+                <p>Requisitos para la elaboración, actualización y publicación de cartas de navegación aérea nacionales.
+                </p>
                 <div class="card-footer-action">
                     ABRIR DOCUMENTO PDF <i data-lucide="external-link" size="14"></i>
                 </div>
@@ -399,22 +437,23 @@
                     <span class="rap-badge">RAP 310</span>
                 </div>
                 <h3>Telecomunicaciones</h3>
-                <p>Servicios de Telecomunicaciones Aeronáuticas. Incluye sistemas de comunicaciones, navegación y vigilancia (CNS).</p>
+                <p>Servicios de Telecomunicaciones Aeronáuticas. Incluye sistemas de comunicaciones, navegación y
+                    vigilancia (CNS).</p>
                 <div class="volumes-container">
-                    <a href="https://cdn.www.gob.pe/uploads/document/file/390275/321323-rap-310-volumen-i-sistemas-de-comunicaciones-navegacion-y-vigilancia-aeronautica-cns-vigente.pdf?v=1771277831" 
-                       target="_blank" class="volume-item">
+                    <a href="https://cdn.www.gob.pe/uploads/document/file/390275/321323-rap-310-volumen-i-sistemas-de-comunicaciones-navegacion-y-vigilancia-aeronautica-cns-vigente.pdf?v=1771277831"
+                        target="_blank" class="volume-item">
                         VOLUMEN I <i data-lucide="external-link" size="12"></i>
                     </a>
-                    <a href="https://cdn.www.gob.pe/uploads/document/file/390276/321323-rap-310-volumen-ii-procedimientos-de-comunicaciones-vigente.pdf?v=1771277831" 
-                       target="_blank" class="volume-item">
+                    <a href="https://cdn.www.gob.pe/uploads/document/file/390276/321323-rap-310-volumen-ii-procedimientos-de-comunicaciones-vigente.pdf?v=1771277831"
+                        target="_blank" class="volume-item">
                         VOLUMEN II <i data-lucide="external-link" size="12"></i>
                     </a>
                 </div>
             </div>
 
             <!-- RAP 311 -->
-            <a href="https://cdn.www.gob.pe/uploads/document/file/9466075/321326-rap-311-tercera-edicion-enmienda-1-vigente.pdf?v=1771428802" 
-               target="_blank" class="card-modern-rap">
+            <a href="https://cdn.www.gob.pe/uploads/document/file/9466075/321326-rap-311-tercera-edicion-enmienda-1-vigente.pdf?v=1771428802"
+                target="_blank" class="card-modern-rap">
                 <div class="card-rap-header">
                     <div class="rap-icon-box"><i data-lucide="navigation-2" size="24"></i></div>
                     <span class="rap-badge">RAP 311</span>
@@ -427,8 +466,8 @@
             </a>
 
             <!-- RAP 312 -->
-            <a href="https://cdn.www.gob.pe/uploads/document/file/390290/321327-rap-312-nueva-edicion-enmienda-1-vigente.pdf?v=1770755601" 
-               target="_blank" class="card-modern-rap">
+            <a href="https://cdn.www.gob.pe/uploads/document/file/390290/321327-rap-312-nueva-edicion-enmienda-1-vigente.pdf?v=1770755601"
+                target="_blank" class="card-modern-rap">
                 <div class="card-rap-header">
                     <div class="rap-icon-box"><i data-lucide="life-buoy" size="24"></i></div>
                     <span class="rap-badge">RAP 312</span>
@@ -441,8 +480,8 @@
             </a>
 
             <!-- RAP 315 -->
-            <a href="https://cdn.www.gob.pe/uploads/document/file/8614109/321331-rap_315_ne_enm3.pdf?v=1757346298" 
-               target="_blank" class="card-modern-rap">
+            <a href="https://cdn.www.gob.pe/uploads/document/file/8614109/321331-rap_315_ne_enm3.pdf?v=1757346298"
+                target="_blank" class="card-modern-rap">
                 <div class="card-rap-header">
                     <div class="rap-icon-box"><i data-lucide="info" size="24"></i></div>
                     <span class="rap-badge">RAP 315</span>
@@ -458,7 +497,8 @@
 
     <footer>
         <div class="footer-logo">CTNAV PERÚ</div>
-        <p class="footer-copy">&copy; <span id="year"></span> Centro de Navegación Aérea. Portal de Regulaciones Aeronáuticas.</p>
+        <p class="footer-copy">&copy; <span id="year"></span> Centro de Navegación Aérea. Portal de Regulaciones
+            Aeronáuticas.</p>
     </footer>
 
     <script>
